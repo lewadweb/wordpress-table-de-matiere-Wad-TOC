@@ -50,8 +50,9 @@
         }
 
         wrap.style.background = options.bgcolor || '#fefefe';
-        if (options.maxwidth) {
-            wrap.style.maxWidth = parseInt(options.maxwidth, 10) + 'px';
+        const maxWidthVal = parseInt(options.maxwidth, 10);
+        if (options.maxwidth && !isNaN(maxWidthVal) && maxWidthVal > 0) {
+            wrap.style.maxWidth = maxWidthVal + 'px';
         } else {
             wrap.style.removeProperty('max-width');
         }
