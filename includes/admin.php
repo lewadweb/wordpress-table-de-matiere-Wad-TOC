@@ -13,7 +13,7 @@ function wadtoc_render_settings_page() {
         update_option('wadtoc_headercolor', '#444');
         update_option('wadtoc_maxwidth', '');
         update_option('wadtoc_iconcolor', '#444');
-        echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__('Paramètres réinitialisés aux valeurs par défaut.', 'Table of Contents – WAD TOC') . '</p></div>';
+        echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__('Paramètres réinitialisés aux valeurs par défaut.', 'wadtoc') . '</p></div>';
     }
     ?>
     <div class="wrap">
@@ -39,15 +39,14 @@ function wadtoc_render_settings_page() {
 }
 
 add_action('admin_init', function() {
-    register_setting('wadtoc_settings_group', 'wadtoc_headings', ['sanitize_callback' => 'sanitize_text_field']);
-    register_setting('wadtoc_settings_group', 'wadtoc_open', ['sanitize_callback' => 'absint']); // si c’est un booléen stocké en 0/1
-    register_setting('wadtoc_settings_group', 'wadtoc_title', ['sanitize_callback' => 'sanitize_text_field']);
-    register_setting('wadtoc_settings_group', 'wadtoc_bgcolor', ['sanitize_callback' => 'sanitize_hex_color']);
-    register_setting('wadtoc_settings_group', 'wadtoc_linkcolor', ['sanitize_callback' => 'sanitize_hex_color']);
-    register_setting('wadtoc_settings_group', 'wadtoc_headercolor', ['sanitize_callback' => 'sanitize_hex_color']);
-    register_setting('wadtoc_settings_group', 'wadtoc_maxwidth', ['sanitize_callback' => 'absint']);
-    register_setting('wadtoc_settings_group', 'wadtoc_iconcolor', ['sanitize_callback' => 'sanitize_hex_color']);
-    
+    register_setting('wadtoc_settings_group', 'wadtoc_headings');
+    register_setting('wadtoc_settings_group', 'wadtoc_open');
+    register_setting('wadtoc_settings_group', 'wadtoc_title');
+    register_setting('wadtoc_settings_group', 'wadtoc_bgcolor');
+    register_setting('wadtoc_settings_group', 'wadtoc_linkcolor');
+    register_setting('wadtoc_settings_group', 'wadtoc_headercolor');
+    register_setting('wadtoc_settings_group', 'wadtoc_maxwidth');
+    register_setting('wadtoc_settings_group', 'wadtoc_iconcolor');
 
     add_settings_section('wadtoc_main', 'Réglages principaux', null, 'wadtoc-settings');
 
@@ -56,7 +55,7 @@ add_action('admin_init', function() {
         if ($val === false) $val = ['h1','h2','h3'];
         foreach(['h1','h2','h3','h4','h5','h6'] as $hx) {
             $checked = is_array($val) && in_array($hx, $val) ? 'checked' : '';
-            echo "<label style='margin-right:8px'><input type='checkbox' name='wadtoc_headings[]' value='" . esc_attr($hx) . "' $checked> " . esc_html($hx) . "</label>";
+            echo "<label style='margin-right:8px'><input type='checkbox' name='wadtoc_headings[]' value='$hx' $checked> $hx</label> ";
         }
     }, 'wadtoc-settings', 'wadtoc_main');
 
@@ -70,31 +69,31 @@ add_action('admin_init', function() {
 
     add_settings_field('wadtoc_title', 'Titre du bloc', function() {
         $val = esc_attr(get_option('wadtoc_title', 'Sommaire'));
-        echo "<input type='text' name='wadtoc_title' value='" . esc_attr($val) . "' size='30'>";
+        echo "<input type='text' name='wadtoc_title' value='$val' size='30'>";
     }, 'wadtoc-settings', 'wadtoc_main');
 
     add_settings_field('wadtoc_bgcolor', 'Couleur de fond', function() {
         $val = esc_attr(get_option('wadtoc_bgcolor', '#fefefe'));
-        echo "<input type='color' name='wadtoc_bgcolor' value='" . esc_attr($val) . "'>";
+        echo "<input type='color' name='wadtoc_bgcolor' value='$val'>";
     }, 'wadtoc-settings', 'wadtoc_main');
 
     add_settings_field('wadtoc_linkcolor', 'Couleur des liens', function() {
         $val = esc_attr(get_option('wadtoc_linkcolor', '#111'));
-        echo "<input type='color' name='wadtoc_linkcolor' value='" . esc_attr($val) . "'>";
+        echo "<input type='color' name='wadtoc_linkcolor' value='$val'>";
     }, 'wadtoc-settings', 'wadtoc_main');
 
     add_settings_field('wadtoc_headercolor', "Couleur de l'en-tête", function() {
         $val = esc_attr(get_option('wadtoc_headercolor', '#111'));
-        echo "<input type='color' name='wadtoc_headercolor' value='" . esc_attr($val) . "'>";
+        echo "<input type='color' name='wadtoc_headercolor' value='$val'>";
     }, 'wadtoc-settings', 'wadtoc_main');
 
     add_settings_field('wadtoc_iconcolor', "Couleur de l'icône", function() {
         $val = esc_attr(get_option('wadtoc_iconcolor', '#111'));
-        echo "<input type='color' name='wadtoc_iconcolor' value='" . esc_attr($val) . "'>";
+        echo "<input type='color' name='wadtoc_iconcolor' value='$val'>";
     }, 'wadtoc-settings', 'wadtoc_main');
 
     add_settings_field('wadtoc_maxwidth', 'Largeur maximale (px)', function() {
         $val = esc_attr(get_option('wadtoc_maxwidth', ''));
-        echo "<input type='number' name='wadtoc_maxwidth' min='200' max='4000' value='" . esc_attr($val) . "' style='width:80px'>";
+        echo "<input type='number' name='wadtoc_maxwidth' min='200' max='1200' value='$val' style='width:80px'>";
     }, 'wadtoc-settings', 'wadtoc_main');
 });
