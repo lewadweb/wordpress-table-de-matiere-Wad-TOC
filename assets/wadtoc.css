@@ -1,0 +1,131 @@
+/* Table de matière (wadtoc) - styles principaux */
+.wadtoc-wrap {
+    border-radius: 5px;
+    padding: 10px;
+    font-family: inherit;
+    overflow: hidden;
+    width: fit-content;
+    border: 1px solid #a8a8a8;
+}
+
+.wadtoc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.wadtoc-title {
+    font-size: 110%;
+}
+
+.wadtoc-toggle {
+    background: none;
+    border: none;
+    padding: 0 0 0 10px;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.wadtoc-toggle:hover,
+.wadtoc-toggle:active,
+.wadtoc-toggle:focus,
+.wadtoc-toggle:hover::after,
+.wadtoc-toggle:active::after,
+.wadtoc-toggle:focus::after {
+    background: none;
+    opacity: 0.8;
+}
+
+.wadtoc-toggle-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.wadtoc-toggle-icon:before,
+.wadtoc-toggle-icon:after {
+    content: '';
+    position: absolute;
+    background: var(--wadtoc-icon-color, #333);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.wadtoc-toggle-icon:before {
+    width: 16px;
+    height: 2px;
+    top: 9px;
+    left: 2px;
+}
+
+.wadtoc-toggle-icon:after {
+    width: 2px;
+    height: 16px;
+    top: 2px;
+    left: 9px;
+}
+
+.wadtoc-wrap.active .wadtoc-toggle-icon {
+    transform: rotate(180deg);
+}
+
+.wadtoc-wrap.active .wadtoc-toggle-icon:after {
+    opacity: 0;
+}
+
+.wadtoc-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    background: transparent;
+}
+
+.wadtoc-level-1 { margin-left: 0em; font-size: 95%; }
+.wadtoc-level-2 { margin-left: 1em; font-size: 90%; }
+.wadtoc-level-3 { margin-left: 2.5em; font-size: 85%; }
+.wadtoc-level-4 { margin-left: 4em; font-size: 80%; }
+.wadtoc-level-5 { margin-left: 5.5em; font-size: 75%; }
+.wadtoc-level-6 { margin-left: 7em; font-size: 70%; }
+
+.wadtoc-wrap.active .wadtoc-content {
+    max-height: 2000px;
+}
+
+.wadtoc-list {
+    line-height: 1.6em;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.wadtoc-item a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+
+}
+
+.wadtoc-item a:hover {
+    text-decoration: underline;
+    border-color: currentColor;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    .wadtoc-header,
+    .wadtoc-content {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .wadtoc-list {
+        line-height: 1.3em;
+    }
+}
