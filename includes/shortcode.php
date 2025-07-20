@@ -32,7 +32,7 @@ function wadtoc_generate_toc($content, $levels) {
     $content_with_anchors = $content;
     foreach ($matches[0] as $i => $match) {
         $tag = strtolower($matches[1][$i][0]);
-        $title = strip_tags($matches[3][$i][0]);
+        $title = wp_strip_all_tags($matches[3][$i][0]);
         $anchor = 'wadtoc-' . sanitize_title($title) . '-' . substr(md5($title . $i), 0, 6);
         $toc .= '<li class="wadtoc-item wadtoc-' . esc_attr($tag) . '"><a href="#' . esc_attr($anchor) . '" style="color:inherit;text-decoration:none;">' . esc_html($title) . '</a></li>';
         // Injecter l'ancre dans le contenu

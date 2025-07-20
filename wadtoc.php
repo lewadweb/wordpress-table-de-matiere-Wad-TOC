@@ -1,12 +1,12 @@
 <?php
 /*
-Plugin Name: Table de matière - WAD TOC
+Plugin Name: Table of Contents – WAD TOC
 Description: Ajoute une table des matières automatique et responsive via le shortcode [table_matiere].
 Version: 1.0.0
 Author: wadweb.fr
 Author URI: https://wadweb.fr
 License: GPL2
-Text Domain: wadtoc
+Text Domain: Table of Contents – WAD TOC
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit;

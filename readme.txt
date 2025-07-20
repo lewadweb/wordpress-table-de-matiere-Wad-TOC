@@ -1,12 +1,12 @@
-=== Table de matière (wadtoc) ===
+=== Table of Contents – WAD TOC ===
 Contributors: wadweb
 Tags: table des matières, sommaire, shortcode, responsive, wp
 Requires at least: 5.0
-Tested up to: 6.4
+Tested up to: 6.8
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: wadtoc
+Text Domain: Table of Contents – WAD TOC
 Domain Path: /languages
 
 Affiche une table des matières automatique et responsive via le shortcode [table_matiere].
