@@ -3,7 +3,7 @@
         var headings = Array.isArray(options.headings) ? options.headings : ['h1','h2','h3','h4','h5','h6'];
     
         // Construire le sélecteur CSS avec les niveaux demandés
-        var selector = headings.map(h => 'article ' + h).join(',');
+        var selector = headings.map(h => 'main ' + h + ', .entry-content ' + h + ', .page-content ' + h).join(',');
     
         // Sélectionner tous les titres dans l'ordre naturel du DOM
         var nodes = Array.from(document.querySelectorAll(selector))
